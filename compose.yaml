@@ -57,8 +57,7 @@ services:
       dockerfile: ./docker/frontend/Dockerfile
     container_name: tokyu_branz_frontend
     volumes:
-      - ./frontend:/app
-#      - /app/node_modules  # node_modules をコンテナ内で管理
+      - ./tokyu_branz_frontend:/app
     ports:
       - "3003:3000"
     environment:

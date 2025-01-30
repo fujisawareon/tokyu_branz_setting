@@ -5,7 +5,7 @@ FROM node:18
 WORKDIR /app
 
 # パッケージファイルをコピー
-COPY ../../frontend/package.json ../../frontend/package-lock.json ./
+COPY ../../tokyu_branz_frontend/package.json ../../tokyu_branz_frontend/package-lock.json ./
 
 # 依存関係をインストール（本番環境でも devDependencies を含める）
 RUN npm install --include=dev
@@ -14,7 +14,7 @@ RUN npm install --include=dev
 RUN npm install -g vite
 
 # ソースコードをコピー
-COPY ../../frontend/ .
+COPY ../../tokyu_branz_frontend/ .
 
 # 開発用サーバの起動
 CMD ["npm", "run", "dev"]

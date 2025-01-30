@@ -3,11 +3,16 @@
 ##### レポジトリをクローン
     git clone git@github.com:fujisawareon/tokyu_branz_setting.git
     git clone git@github.com:fujisawareon/tokyu_branz.git tokyu_branz_setting
-    git clone git@_____________ tokyu_branz_setting
+    git clone git@github.com:fujisawareon/tokyu_branz_frontend.git tokyu_branz_setting
 
 ##### クローンした開発用ディレクトリに移動し、各コンテナを作成
     cd tokyu_branz_setting
     docker compose build
+
+##### 
+    cd tokyu_branz_frontend
+    npm install
+    cd ..
     docker compose up -d
 
 ##### 管理画面の初期設定
@@ -21,6 +26,7 @@
 
 ##### フロントの初期設定
     docker exec -it tokyu_branz_frontend bash
+
 
 <br>
 
@@ -40,6 +46,7 @@
     docker-compose down
 
 ##### イメージ削除
-    docker rmi tokyu_branz_setting-frontend
+    docker rmi tokyu_branz_setting_frontend
+    docker rmi tokyu_branz_setting_app
 
 
