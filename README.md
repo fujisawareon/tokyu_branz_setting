@@ -1,50 +1,45 @@
-# 東急のMyBranzブランズの開発環境構築手順
+# 東急MyBranz 開発環境 構築手順
 
-```
-# 本レポジトリをクローン
-git clone git@github.com:fujisawareon/tokyu_branz_setting.git
+##### レポジトリをクローン
+    git clone git@github.com:fujisawareon/tokyu_branz_setting.git
+    git clone git@github.com:fujisawareon/tokyu_branz.git tokyu_branz_setting
+    git clone git@_____________ tokyu_branz_setting
 
-# クローンしたディレクトリに移動
-cd tokyu_branz_setting
+##### クローンした開発用ディレクトリに移動し、各コンテナを作成
+    cd tokyu_branz_setting
+    docker compose build
+    docker compose up -d
 
-# アプリケーションのソースをクローン
-git clone git@github.com:fujisawareon/tokyu_branz.git
+##### 管理画面の初期設定
+    docker exec -it tokyu_branz_app bash
+    composer install
+    cp .env.example .env
+    php artisan key:generate
+    chmod 777 -R storage/
+    npm install
+    npm run build
 
-# コンテナを作成
-docker compose build
-docker compose up -d
+##### フロントの初期設定
+    docker exec -it tokyu_branz_frontend bash
 
-# アプリの初期設定
-docker exec -it tokyu_branz_app bash
-composer install
-cp .env.example .env
-php artisan key:generate
-chmod 777 -R storage/
-npm install
-npm run build
+<br>
 
-docker exec -it tokyu_branz_frontend bash
-```
-# 各URL
-・管理画面<br>
-　<a href="http://localhost:8083/">http://localhost:8083/</a><br>
-・フロント<br>
-　・コンテナ無いで npm run build する場合<br>
-　　npm run dev を実行して表示されるリンク　例）<a href="http://localhost:5173/">http://localhost:5173/</a><br>
-　・コンテナに入らず npm run dev する場合<br>
-　　<a href="http://localhost:5173/">http://localhost:3003/</a><br>
-・PhpMyAdmin<br>
-　<a href="http://localhost:8003/">http://localhost:8003/</a>
+### 各URL
+| システム名      | URL                                                                                                                               | 備考                                                             |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| 管理画面       | <a href="http://localhost:8083/">http://localhost:8083/</a>                                                                       |                                                                |
+| フロント画面     | 1. <a href="http://localhost:5173/">http://localhost:5173/</a><br/>2. <a href="http://localhost:5173/">http://localhost:3003/</a> | 1. コンテナに入らず npm run dev する場合<br/>2. コンテナ無いで npm run build する場合 |
+| PhpMyAdmin | <a href="http://localhost:8003/">http://localhost:8003/</a>                                                                       |                                                                |
 
 
-# 不具合時にイメージまで削除する時の手順
-```
-# コンテナ停止して削除
- docker-compose down
 
- # イメージ削除
- docker rmi tokyu_branz_setting-frontend
-```
+<br><br>
 
+### 不具合時にイメージまで削除する場合
+##### コンテナ停止して削除
+    docker-compose down
+
+##### イメージ削除
+    docker rmi tokyu_branz_setting-frontend
 
 
