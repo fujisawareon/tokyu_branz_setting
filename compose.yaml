@@ -1,11 +1,10 @@
 services:
-  # Laravel用コンテナ
+  # Laravel管理画面用コンテナ
   app:
     build:
-      context: .
+      context: ./docker/backend/
       dockerfile: Dockerfile
     container_name: tokyu_branz_app
-    # ローカルのプロジェクトディレクトリをコンテナにマウント
     volumes:
       - ./tokyu_branz:/var/www/html
     ports:
@@ -50,6 +49,20 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root_password
+
+  # Reactフロントエンドコンテナ
+  frontend:
+    build:
+      context: ./ # プロジェクトルートをビルドコンテキストにする
+      dockerfile: ./docker/frontend/Dockerfile
+    container_name: tokyu_branz_frontend
+    volumes:
+      - ./frontend:/app
+#      - /app/node_modules  # node_modules をコンテナ内で管理
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
 
 # ここで定義したボリュームを DB で使います
 volumes:
