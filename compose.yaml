@@ -9,6 +9,7 @@ services:
       - ./tokyu_branz:/var/www/html
     ports:
       - 8083:80
+      - 5173:5173
     depends_on:
       - db
     # 環境変数を必要に応じて追加できます
@@ -34,6 +35,7 @@ services:
     # データを永続化するためにボリュームを設定
     volumes:
       - db-data:/var/lib/mysql
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
     ports:
       - "3309:3306"
 
@@ -51,19 +53,6 @@ services:
       PMA_USER: user
       PMA_PASSWORD: password
       MYSQL_ROOT_PASSWORD: root_password
-
-  # Reactフロントエンドコンテナ
-  frontend:
-    build:
-      context: ./ # プロジェクトルートをビルドコンテキストにする
-      dockerfile: ./docker/frontend/Dockerfile
-    container_name: tokyu_branz_frontend
-    volumes:
-      - ./tokyu_branz_frontend:/app
-    ports:
-      - "3003:3000"
-    environment:
-      - NODE_ENV=production
 
 # ここで定義したボリュームを DB で使います
 volumes:
