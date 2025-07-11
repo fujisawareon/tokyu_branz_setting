@@ -1,8 +1,8 @@
 # 東急MyBranz 開発環境 構築手順
 
 ##### レポジトリをクローン
-    git clone git@github.com:fujisawareon/tokyu_branz_setting.git
-    git clone git@github.com:fujisawareon/my_branz.git tokyu_branz_setting
+    git clone git@github.com:sara-its/tokyu_my_branz_setting.git
+    git clone git@github.com:sara-its/my_branz.git tokyu_branz_setting
 
 ##### クローンした開発用ディレクトリに移動し、各コンテナを作成
     cd tokyu_branz_setting
